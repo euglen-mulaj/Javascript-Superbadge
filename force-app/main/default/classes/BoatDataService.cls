@@ -108,4 +108,8 @@ public with sharing class BoatDataService {
         update boatsForUpdate;
         return 'Success: Boats updated successfully';
     }
+    @auraEnabled(cacheable=true)
+    public static void insertNewBoat(String boatName,String ContactId){
+
+    }
 }

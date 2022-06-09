@@ -1,7 +1,9 @@
 // imports
 // import getBoatTypes from the BoatDataService => getBoatTypes method';
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
 import getBoatTypes from '@salesforce/apex/BoatDataService.getBoatTypes';
+// import BOAT_NAME from '@salesforce/schema/BoatType__c.Name';
+// import BOAT_ID from '@salesforce/schema/BoatType__c.Id';
 // import { publish, MessageContext } from 'lightning/messageService';
 // import BoatMessageChannel from '@salesforce/messageChannel/BoatMessageChannel';
 
@@ -12,19 +14,18 @@ export default class BoatSearchForm extends LightningElement {
     // Private
     error = undefined;
     
+    @track
     searchOptions;
     
     // Wire a custom Apex method
     @wire(getBoatTypes)
-    boatTypes;
+    // boatTypes;
 
       boatTypes({ error, data }) {
       if (data) {
         this.searchOptions = data.map(type => {
           // TODO: complete the logic
-          return [
-            { label: this.Name, value: this.Id },
-        ];
+          return  { label: type.Name, value: type.Id };
         });
         this.searchOptions.unshift({ label: 'All Types', value: '' });
       } else if (error) {

@@ -1,7 +1,9 @@
  // imports
  import { LightningElement, wire } from 'lwc';
+ import { NavigationMixin } from 'lightning/navigation';
 
- export default class BoatSearch extends LightningElement {
+
+ export default class BoatSearch extends NavigationMixin(LightningElement) {
     isLoading = false;
     
     // Handles loading event
@@ -23,8 +25,15 @@
       this.handleDoneLoading();
      }
     
-    createNewBoat() { 
-      alert('worls');
-    }
+     //function to directly create a standart/custom salesforce object 
+     createNewBoat() {
+      this[NavigationMixin.Navigate]({
+          type: 'standard__objectPage',
+          attributes: {
+              objectApiName: 'Boat__c',
+              actionName: 'new'
+          }
+      });        
+  }
   }
   

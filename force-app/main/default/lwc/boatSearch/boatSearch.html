@@ -20,10 +20,10 @@
       <lightning-layout-item size="12" class="slds-p-top_small slds-is-relative">
         <!-- Spinner goes here -->
         <template if:true={isLoading}>
-        <lightning-spinner alternative-text = "Loading" size="medium"></lightning-spinner>
+        <lightning-spinner alternative-text = "Loading" variant="brand"></lightning-spinner>
       </template>
         <!-- boatSearchResults goes here -->
-        <c-boat-search-results></c-boat-search-results>
+        <c-boat-search-results onloading={handleLoading} ondoneloading={handleDoneLoading}></c-boat-search-results>
         <!-- onloading={handleLoading} ondoneloading={handleDoneLoading} -->
       </lightning-layout-item>
     </lightning-layout>
